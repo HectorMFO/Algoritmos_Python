@@ -2,11 +2,13 @@
 def collatz():
   #Se lee el valor de "N"
   n = int(input("Ingrese un numero: "))
-
+  #Mientras el numnero sea distinto a 1, el ciclo se realizará
   while (n!=1):
+    #Si el numero es par, se divide entre 2
     if (n % 2 == 0):
         n = n/2
     else:
+        #Si el numero es impar, de multiplica * 3 y se le suma 1
         n = (3*n) + 1
     print("Valor de 'N': ",n)
 
@@ -18,6 +20,7 @@ def kaprekar():
   ciclo = int(1)
 
   def numero():
+    #Valida que se ingrese un numero de 4 cifras
     num = int(input("Ingrese numero: "))
     if(num>999 and num<=9999):      
       arreglo = [int(x) for x in str(num)]
@@ -26,6 +29,7 @@ def kaprekar():
     else:
       print("Ingrese un numero de 4 cifras")
 
+  #Funcion que identifica si hay cifras repetidas en el numero registrado
   def repetidos(valor):
     if(len(valor) != len(set(valor))):
       return True
@@ -33,6 +37,7 @@ def kaprekar():
       return False
       
   bandera = bool(True)
+  #Se hace el ciclo de registrar el numero y comprobar que no haya duplicados
   while(bandera):
     valor = numero()
     if(valor):
@@ -40,27 +45,31 @@ def kaprekar():
 
   #guardar numero ordenado ascendente y descendente
   aux1 = sorted(valor)
-  print("Ascendente: ",aux1)
   aux2 = list(reversed(aux1))
-  print("Descendente: ",aux2)
 
+  #Convierte de lista a entero
   for current_digit in aux1:
     num_ord = num_ord*10 + current_digit
 
   for current_digit in aux2:
     num_inv = num_inv*10 + current_digit
-
+  
+  print("Ordenado: ",num_ord)
+  print("Invertido: ",num_inv)
+  print("Ciclo: ", ciclo)  
+    
   while(res!=6174):
     res = num_ord - num_inv
+    #Si el numero es negativo lo convierte a positivo
     if(res < 0):
       res = (res * (-1))
     print("Valor: ",res) 
+    #Repite la secuencia de ordenar los numeros y realizar la operacion para llegar a 6174
     if(res!=6174):
       ciclo += 1
       num_ord = 0
       num_inv = 0
       aux1 = [int(x) for x in str(res)]
-      print("Auxiliar: ",aux1)
       aux1 = sorted(aux1)
       aux2 = list(reversed(aux1))
       for current_digit in aux1:
@@ -91,6 +100,7 @@ def mult_rus():
 #Multiplicacion Egipcia
 def mult_egip():
   res = int(0)
+  suma = int(0)
   bandera = bool(False)
   #multiplicador = a
   a = int(input("Multiplicador: "))
@@ -99,18 +109,18 @@ def mult_egip():
   #auxiliares
   aux1 = a
   aux2 = int(1)
-  aux3 = int(0)
 
   while(aux2 < b and bandera!=True):
+    #Antes de hacer la siguiente secuencia, revisa si no excede el numero el valor del multiplcando
     if((aux2*2)>b):
       bandera = True
-      break;
+      break
     else:
       aux1 = aux1 * 2
       aux2 = aux2 * 2
-  suma = int(0)
 
   while(aux1>=a):
+    #Solo realiza la suma cuando no sobrepase el limite el cual corresponde al valor del multiplicando
     if((suma+aux2)<=b):
       suma += aux2
       res += aux1
