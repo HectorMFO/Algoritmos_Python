@@ -89,7 +89,7 @@ def mult_rus():
   #Ingresa multiplicando = y
   y = int(input("Ingrese multiplicando: "))
 
-  while(x!=0):
+  while(x>0):
       if (x % 2 != 0):
         res += y
       x = int(x/2)
